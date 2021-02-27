@@ -10,7 +10,8 @@ function addR() {
   table.appendChild(row);
 
   //Inside the TR, add the number of columns as TD's
-  if(numCols === 0){ //When we don't have any columns yet, just adding 1 square/row will increase the number of columns
+  if (numCols === 0) {
+    //When we don't have any columns yet, just adding 1 square/row will increase the number of columns
     numCols++;
   }
 
@@ -27,7 +28,8 @@ function addC() {
   let col;
   let row;
 
-  if(numRows === 0){ //When we don't have any rows yet, just adding 1 square/column will increase the number of rows
+  if (numRows === 0) {
+    //When we don't have any rows yet, just adding 1 square/column will increase the number of rows
     numRows++;
     let extra = document.createElement("TR");
     table.appendChild(extra);
@@ -43,11 +45,31 @@ function addC() {
 }
 
 function removeR() {
-  alert("Clicked Remove Row")
+  let row = table.rows.length - 1; //gets the index of the last row
+
+  //edge case if there are none to remove
+  if (numCols <= 0 || numRows <= 0) {
+    alert("You need to add a row or column!");
+  } else {
+    document.getElementById("grid").deleteRow(row);
+    numRows -= 1;
+  }
+  
 }
 
 function removeC() {
-  alert("Clicked Remove Col")
+  let col = document.getElementById("grid").rows[0].cells.length - 1;
+  
+  //edge case if there are none to remove
+  if (numCols <= 0 || numRows <= 0) {
+    alert("You need to add a row or column!");
+  } else {
+    for (let i = 0; i < grid.rows.length; i++) {
+      grid.rows[i].deleteCell(col);
+      numRows -= 1;
+    }
+  }
+  
 }
 
 function selected() {
@@ -56,69 +78,16 @@ function selected() {
 }
 
 function fill() {
-  alert("Clicked Fill All")
+  alert("Clicked Fill All");
 }
 
 //READ: I left the simple implementation for this all the way at the bottom of the file
 //If you prfer to do it on your own, carry on, otherwise enjoy the freebie
-function clearAll() {
-}
+function clearAll() {}
 
 function fillU() {
-  alert("Clicked Fill All Uncolored")
+  alert("Clicked Fill All Uncolored");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 table.innerHTML = '';
