@@ -17,6 +17,7 @@ function addR() {
 
   for (let i = 0; i < numCols; i++) {
     col = document.createElement("TD");
+    col.style.backgroundColor = "white";
     row.appendChild(col);
   }
 
@@ -38,6 +39,7 @@ function addC() {
   for (let i = 0; i < numRows; i++) {
     row = document.querySelectorAll("tr")[i];
     col = document.createElement("TD");
+    col.style.backgroundColor = "white";
     row.appendChild(col);
   }
 
@@ -85,12 +87,33 @@ function selected() {
 // selected() end
 
 function fill() {
-  alert("Clicked Fill All");
+  let colors = ["Red", "Green", "Blue", "Yellow"];
+  let selected = document.getElementById("selectedID").value;
+  if (colors.find((element) => element === selected) !== undefined) {
+    colorSelected = selected;
+  }
+  for (let i = 0; i < table.childNodes.length; i++) {
+    for (let j = 0; j < table.childNodes[i].childNodes.length; j++) {
+      table.childNodes[i].childNodes[j].style.backgroundColor = colorSelected;
+    }
+  }
 }
 
 function fillU() {
-  alert("Clicked Fill All Uncolored");
-}
+  let colors = ["Red", "Green", "Blue", "Yellow"];
+  let selected = document.getElementById("selectedID").value;
+  if (colors.find((element) => element === selected) !== undefined) {
+    colorSelected = selected;
+  }
+    for (let i = 0; i < table.childNodes.length; i++) {
+      for (let j = 0; j < table.childNodes[i].childNodes.length; j++) {
+        if ((table.childNodes[i].childNodes[j].style.backgroundColor) === "white"){
+          table.childNodes[i].childNodes[j].style.backgroundColor = colorSelected;
+        }
+      }
+    }
+  }
+
 
 //clearAll() begin
 function clearAll() {
